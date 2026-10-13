@@ -1,0 +1,37 @@
+[
+  {
+    "slug": "girls",
+    "name": "Girls",
+    "eyebrow": "For little dreamers",
+    "description": "Twirl-ready frocks, comfy co-ords and festive favourites for girls aged 2 to 10.",
+    "image": "",
+    "subcategories": [
+      "Frocks",
+      "Co-ord Sets",
+      "Party Wear",
+      "Ethnic Wear"
+    ]
+  },
+  {
+    "slug": "boys",
+    "name": "Boys",
+    "eyebrow": "For little explorers",
+    "description": "Bold printed T-shirts paired with blue jeans, for boys from 18 months to 8 years.",
+    "image": "/assets/pics/force cherry main.jpg",
+    "subcategories": [
+      "T-shirt & Jeans Sets"
+    ]
+  },
+  {
+    "slug": "unisex",
+    "name": "Unisex",
+    "eyebrow": "For every kid",
+    "description": "Everyday tees, cosy layers and sleepwear that any child can wear and share.",
+    "image": "",
+    "subcategories": [
+      "T-Shirts",
+      "Winterwear",
+      "Nightwear"
+    ]
+  }
+]

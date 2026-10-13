@@ -1,0 +1,210 @@
+[
+  {
+    "id": "hrr-force",
+    "slug": "force-tshirt-jeans-set",
+    "name": "Force T-shirt & Jeans Set",
+    "brand": "HRR",
+    "collection": "Kids",
+    "gender": "Boys",
+    "category": "T-shirt & Jeans Sets",
+    "price": 469,
+    "mrp": 999,
+    "description": "A two-piece set for boys: a full-sleeve T-shirt with a bold \"Force\" graphic on the front, paired with washed blue jeans.",
+    "featured": true,
+    "colors": [
+      {
+        "name": "Beige",
+        "hex": "#E1D0AA",
+        "images": [
+          "/assets/pics/force beige main.jpg",
+          "/assets/pics/force beige side.jpg",
+          "/assets/pics/force beige baclk.jpg"
+        ],
+        "sizes": [
+          "18-24 months",
+          "2-3 yrs",
+          "3-4 yrs",
+          "5-6 yrs",
+          "6-7 yrs",
+          "7-8 yrs"
+        ],
+        "amazonUrl": ""
+      },
+      {
+        "name": "Cherry",
+        "hex": "#E12164",
+        "images": [
+          "/assets/pics/force cherry main.jpg",
+          "/assets/pics/force cherry side.jpg",
+          "/assets/pics/force cherry back.jpg"
+        ],
+        "sizes": [
+          "18-24 months",
+          "2-3 yrs",
+          "3-4 yrs",
+          "4-5 yrs",
+          "5-6 yrs",
+          "6-7 yrs",
+          "7-8 yrs"
+        ],
+        "amazonUrl": ""
+      },
+      {
+        "name": "Gold",
+        "hex": "#F8C83D",
+        "images": [
+          "/assets/pics/force gold main.jpg",
+          "/assets/pics/force gold side.jpg",
+          "/assets/pics/force gold back.jpg"
+        ],
+        "sizes": [
+          "18-24 months",
+          "2-3 yrs",
+          "3-4 yrs",
+          "4-5 yrs",
+          "5-6 yrs",
+          "6-7 yrs",
+          "7-8 yrs"
+        ],
+        "amazonUrl": ""
+      }
+    ]
+  },
+  {
+    "id": "hrr-g-racing",
+    "slug": "g-racing-tshirt-jeans-set",
+    "name": "G Racing T-shirt & Jeans Set",
+    "brand": "HRR",
+    "collection": "Kids",
+    "gender": "Boys",
+    "category": "T-shirt & Jeans Sets",
+    "price": 461,
+    "mrp": 999,
+    "description": "A two-piece set for boys: a full-sleeve T-shirt with a racing-themed print and contrast neckline, paired with washed blue jeans.",
+    "featured": true,
+    "colors": [
+      {
+        "name": "Pink",
+        "hex": "#E7AABB",
+        "images": [
+          "/assets/pics/g raching pink main.jpg",
+          "/assets/pics/g raching pink side.jpg",
+          "/assets/pics/g raching pink back.jpg"
+        ],
+        "sizes": [
+          "18-24 months",
+          "2-3 yrs",
+          "3-4 yrs",
+          "4-5 yrs",
+          "5-6 yrs",
+          "7-8 yrs"
+        ],
+        "amazonUrl": ""
+      },
+      {
+        "name": "Light Green",
+        "hex": "#87CDD6",
+        "images": [
+          "/assets/pics/g raching green main.jpg",
+          "/assets/pics/g raching green side.jpg",
+          "/assets/pics/g raching green back.jpg"
+        ],
+        "sizes": [
+          "18-24 months",
+          "2-3 yrs",
+          "3-4 yrs",
+          "4-5 yrs",
+          "5-6 yrs",
+          "6-7 yrs",
+          "7-8 yrs"
+        ],
+        "amazonUrl": ""
+      },
+      {
+        "name": "Light Blue",
+        "hex": "#6098BB",
+        "images": [
+          "/assets/pics/g raching blue main.jpg",
+          "/assets/pics/g raching blue side.jpg",
+          "/assets/pics/g raching blue back.jpg"
+        ],
+        "sizes": [
+          "18-24 months",
+          "2-3 yrs",
+          "3-4 yrs",
+          "4-5 yrs",
+          "5-6 yrs",
+          "7-8 yrs"
+        ],
+        "amazonUrl": ""
+      }
+    ]
+  },
+  {
+    "id": "hrr-beach",
+    "slug": "beach-tshirt-jeans-set",
+    "name": "Beach T-shirt & Jeans Set",
+    "brand": "HRR",
+    "collection": "Kids",
+    "gender": "Boys",
+    "category": "T-shirt & Jeans Sets",
+    "price": 465,
+    "mrp": 999,
+    "description": "A two-piece set for boys: a bright red full-sleeve printed T-shirt, paired with dark blue jeans.",
+    "featured": false,
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#FF4239",
+        "images": [
+          "/assets/pics/Beachredfull main.jpeg",
+          "/assets/pics/Beachredfull side.jpeg",
+          "/assets/pics/Beachredfull back.jpeg"
+        ],
+        "sizes": [
+          "18-24 months",
+          "2-3 yrs",
+          "3-4 yrs",
+          "4-5 yrs",
+          "5-6 yrs",
+          "6-7 yrs",
+          "7-8 yrs"
+        ],
+        "amazonUrl": ""
+      }
+    ]
+  },
+  {
+    "id": "hrr-london",
+    "slug": "london-tshirt-jeans-set",
+    "name": "London T-shirt & Jeans Set",
+    "brand": "HRR",
+    "collection": "Kids",
+    "gender": "Boys",
+    "category": "T-shirt & Jeans Sets",
+    "price": 472,
+    "mrp": 999,
+    "description": "A two-piece set for boys: a light sky-blue full-sleeve printed T-shirt, paired with dark blue jeans.",
+    "featured": false,
+    "colors": [
+      {
+        "name": "Sky Blue",
+        "hex": "#CFE2F3",
+        "images": [
+          "/assets/pics/london blue main.jpeg",
+          "/assets/pics/london blue side.jpeg",
+          "/assets/pics/london blue back.jpeg"
+        ],
+        "sizes": [
+          "2-3 yrs",
+          "3-4 yrs",
+          "4-5 yrs",
+          "5-6 yrs",
+          "6-7 yrs",
+          "7-8 yrs"
+        ],
+        "amazonUrl": ""
+      }
+    ]
+  }
+]
