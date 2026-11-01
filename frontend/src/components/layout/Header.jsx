@@ -11,6 +11,9 @@ const LINKS = [
   { to: '/news', label: 'News' },
 ];
 
+const GENDERS = ['Boys', 'Girls'];
+const genderPath = (gender) => `/shop?gender=${gender}`;
+
 export default function Header() {
   const categories = useCategories();
   const location = useLocation();
@@ -75,6 +78,10 @@ export default function Header() {
   };
 
   const productsActive = location.pathname.startsWith('/collections') || location.pathname.startsWith('/product');
+  // NavLink only compares paths, so check ?gender= to light up just the selected one.
+  const genderActive = (gender) =>
+    location.pathname === '/shop' &&
+    new URLSearchParams(location.search).get('gender')?.toLowerCase() === gender.toLowerCase();
 
   return (
     <header className="header" ref={headerRef}>
@@ -99,6 +106,11 @@ export default function Header() {
             </button>
             <MegaMenu id="mega-menu" categories={categories} open={megaOpen} />
           </div>
+          {GENDERS.map((gender) => (
+            <Link key={gender} to={genderPath(gender)} className={`nav__link ${genderActive(gender) ? 'active' : ''}`}>
+              {gender}
+            </Link>
+          ))}
           {LINKS.map(({ to, label }) => (
             <NavLink key={to} to={to} className="nav__link">
               {label}
@@ -222,6 +234,13 @@ export default function Header() {
               </ul>
             </div>
           </li>
+          {GENDERS.map((gender) => (
+            <li key={gender}>
+              <Link to={genderPath(gender)} className={`mobile-menu__link ${genderActive(gender) ? 'active' : ''}`}>
+                {gender}
+              </Link>
+            </li>
+          ))}
           {LINKS.map(({ to, label }) => (
             <li key={to}>
               <NavLink to={to} className="mobile-menu__link">

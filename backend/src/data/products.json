@@ -28,7 +28,7 @@
           "6-7 yrs",
           "7-8 yrs"
         ],
-        "amazonUrl": ""
+        "amazonUrl": "https://www.amazon.in/dp/B09H5VQ914?th=1&psc=1"
       },
       {
         "name": "Cherry",
@@ -47,7 +47,7 @@
           "6-7 yrs",
           "7-8 yrs"
         ],
-        "amazonUrl": ""
+        "amazonUrl": "https://www.amazon.in/dp/B09H5W2RL9?th=1&psc=1"
       },
       {
         "name": "Gold",
@@ -66,7 +66,7 @@
           "6-7 yrs",
           "7-8 yrs"
         ],
-        "amazonUrl": ""
+        "amazonUrl": "https://www.amazon.in/dp/B09H5VXHKX?th=1&psc=1"
       }
     ]
   },
@@ -99,7 +99,7 @@
           "5-6 yrs",
           "7-8 yrs"
         ],
-        "amazonUrl": ""
+        "amazonUrl": "https://www.amazon.in/dp/B08Q7G8NXC?th=1&psc=1"
       },
       {
         "name": "Light Green",
@@ -118,7 +118,7 @@
           "6-7 yrs",
           "7-8 yrs"
         ],
-        "amazonUrl": ""
+        "amazonUrl": "https://www.amazon.in/dp/B08Q7G8NXC?th=1&psc=1"
       },
       {
         "name": "Light Blue",
@@ -170,7 +170,7 @@
           "6-7 yrs",
           "7-8 yrs"
         ],
-        "amazonUrl": ""
+        "amazonUrl": "https://www.amazon.in/dp/B09N2HHSLY?th=1&psc=1"
       }
     ]
   },
@@ -196,6 +196,142 @@
           "/assets/pics/london blue back.jpeg"
         ],
         "sizes": [
+          "2-3 yrs",
+          "3-4 yrs",
+          "4-5 yrs",
+          "5-6 yrs",
+          "6-7 yrs",
+          "7-8 yrs"
+        ],
+        "amazonUrl": "https://www.amazon.in/dp/B09N2GNMRQ?th=1&psc=1"
+      }
+    ]
+  },
+  {
+    "id": "hrr-chasma",
+    "slug": "chasma-top-shorts-set",
+    "name": "Chasma Party Top & Shorts Set",
+    "brand": "HRR",
+    "collection": "Kids",
+    "gender": "Girls",
+    "category": "Top & Shorts Sets",
+    "price": 251,
+    "mrp": 999,
+    "description": "A party set for girls: a pink cold-shoulder top with a sunglasses print, paired with printed shorts.",
+    "featured": false,
+    "colors": [
+      {
+        "name": "Pink",
+        "hex": "#F5BFD0",
+        "images": [
+          "/assets/pics/CHASMA FRONT.jpeg",
+          "/assets/pics/CHASMA SIDE.jpeg",
+          "/assets/pics/CHASMA BACK.jpeg"
+        ],
+        "sizes": [
+          "18-24 months",
+          "2-3 yrs",
+          "3-4 yrs",
+          "4-5 yrs",
+          "5-6 yrs",
+          "6-7 yrs",
+          "7-8 yrs"
+        ],
+        "amazonUrl": ""
+      }
+    ]
+  },
+  {
+    "id": "hrr-pink-hat",
+    "slug": "pink-hat-top-shorts-set",
+    "name": "Pink Hat Party Top & Shorts Set",
+    "brand": "HRR",
+    "collection": "Kids",
+    "gender": "Girls",
+    "category": "Top & Shorts Sets",
+    "price": 247,
+    "mrp": 999,
+    "description": "A party set for girls: a pink sleeveless printed top, paired with denim shorts.",
+    "featured": false,
+    "colors": [
+      {
+        "name": "Pink",
+        "hex": "#F27BC4",
+        "images": [
+          "/assets/pics/PINKHAT1.jpg",
+          "/assets/pics/PINKHAT2.jpg",
+          "/assets/pics/PINKHAT3.jpg"
+        ],
+        "sizes": [
+          "18-24 months",
+          "2-3 yrs",
+          "3-4 yrs",
+          "4-5 yrs",
+          "5-6 yrs",
+          "6-7 yrs",
+          "7-8 yrs"
+        ],
+        "amazonUrl": ""
+      }
+    ]
+  },
+  {
+    "id": "hrr-blue-style",
+    "slug": "blue-style-calf-length-dress",
+    "name": "Blue Style Calf-Length Dress",
+    "brand": "HRR",
+    "collection": "Kids",
+    "gender": "Girls",
+    "category": "Dresses",
+    "price": 312,
+    "mrp": 1500,
+    "description": "A calf-length flared dress for girls: a navy 3/4-sleeve top with a pink checked pinafore skirt.",
+    "featured": false,
+    "colors": [
+      {
+        "name": "Pink & Navy",
+        "hex": "#E89BC0",
+        "images": [
+          "/assets/pics/BLUE STYLE FRONT.JPG",
+          "/assets/pics/BLUE STYLE SIDE.JPG",
+          "/assets/pics/BLUE STYLE BACK.JPG"
+        ],
+        "sizes": [
+          "18-24 months",
+          "2-3 yrs",
+          "3-4 yrs",
+          "4-5 yrs",
+          "5-6 yrs",
+          "6-7 yrs",
+          "7-8 yrs"
+        ],
+        "amazonUrl": ""
+      }
+    ]
+  },
+  {
+    "id": "ftc-pink-midi",
+    "slug": "pink-gingham-sleeveless-midi-dress",
+    "name": "Pink Gingham Sleeveless Midi Dress",
+    "brand": "FTC FASHIONS",
+    "collection": "Kids",
+    "gender": "Girls",
+    "category": "Dresses",
+    "price": 192,
+    "mrp": 999,
+    "description": "A sleeveless midi dress for girls: a white bodice with a pink gingham overlay and a tiered gingham skirt.",
+    "featured": false,
+    "colors": [
+      {
+        "name": "Pink & White",
+        "hex": "#E04A82",
+        "images": [
+          "/assets/pics/pk main.jpeg",
+          "/assets/pics/pk side.jpeg",
+          "/assets/pics/pk back.jpeg"
+        ],
+        "sizes": [
+          "18-24 months",
           "2-3 yrs",
           "3-4 yrs",
           "4-5 yrs",

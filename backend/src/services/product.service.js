@@ -21,13 +21,15 @@ watchFile(dataPath(PRODUCTS_FILE), { interval: 1000 }, (curr, prev) => {
 });
 
 // A collection filter such as "Boys" matches the product's collection or its gender.
-export function findProducts({ q, collection, category, featured } = {}) {
+export function findProducts({ q, collection, gender, category, featured } = {}) {
   const query = normalize(q);
   const col = normalize(collection);
+  const gen = normalize(gender);
   const cat = normalize(category);
 
   return products.filter((product) => {
     if (col && normalize(product.collection) !== col && normalize(product.gender) !== col) return false;
+    if (gen && normalize(product.gender) !== gen) return false;
     if (cat && normalize(product.category) !== cat) return false;
     if (featured === 'true' && !product.featured) return false;
     if (!query) return true;

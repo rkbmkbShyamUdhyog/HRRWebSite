@@ -2,8 +2,8 @@ import * as productService from '../services/product.service.js';
 
 export function listProducts(req, res, next) {
   try {
-    const { q, collection, category, featured } = req.query;
-    res.json(productService.findProducts({ q, collection, category, featured }));
+    const { q, collection, gender, category, featured } = req.query;
+    res.json(productService.findProducts({ q, collection, gender, category, featured }));
   } catch (err) {
     next(err);
   }

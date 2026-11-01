@@ -19,6 +19,12 @@ export default function Home() {
       <BrandIntro />
       <CollectionsGrid />
       <FeaturedProducts />
+      <FeaturedProducts
+        filters={{ gender: 'Girls' }}
+        eyebrow="For little dreamers"
+        title="Girls"
+        to="/shop?gender=Girls"
+      />
       <WhyHRR />
       <Testimonials />
       <LatestNews />

@@ -2,7 +2,7 @@
 // Data files refer to them as "/assets/pics/<file name>"; this maps that path to the bundled URL.
 const PICS = Object.fromEntries(
   Object.entries(
-    import.meta.glob('../assets/pics/*.{jpg,jpeg,png,webp}', { eager: true, query: '?url', import: 'default' })
+    import.meta.glob('../assets/pics/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}', { eager: true, query: '?url', import: 'default' })
   ).map(([path, url]) => [path.split('/').pop().toLowerCase(), url])
 );
 

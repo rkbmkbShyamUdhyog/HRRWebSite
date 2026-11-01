@@ -34,6 +34,7 @@ export default function App() {
           <Route path="/news" element={<News />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/collections" element={<Collections />} />
+          <Route path="/shop" element={<Collections />} />
           <Route path="/collections/:collection" element={<Category />} />
           <Route path="/product/:slug" element={<ProductDetail />} />
           <Route path="/privacy" element={<Legal kind="privacy" />} />

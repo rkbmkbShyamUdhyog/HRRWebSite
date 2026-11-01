@@ -12,7 +12,7 @@ async function request(path, options) {
   return data;
 }
 
-// filters: { q, collection, category, featured }
+// filters: { q, collection, gender, category, featured }
 export function getProducts(filters = {}) {
   const params = new URLSearchParams();
   Object.entries(filters).forEach(([key, value]) => {

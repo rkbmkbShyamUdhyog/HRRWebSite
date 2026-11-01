@@ -10,16 +10,17 @@ import usePageTitle from '../hooks/usePageTitle.js';
 
 const SEARCH_DEBOUNCE_MS = 300;
 
-// All products, with search plus a collection filter kept in the URL.
+// All products, with search plus a collection or gender filter kept in the URL.
 export default function Collections() {
   usePageTitle('Our Products');
   const categories = useCategories();
   const [searchParams, setSearchParams] = useSearchParams();
   const q = searchParams.get('q') ?? '';
   const collection = searchParams.get('collection') ?? '';
+  const gender = searchParams.get('gender') ?? '';
 
   const [input, setInput] = useState(q);
-  const { products, status } = useProducts({ q: q.trim(), collection });
+  const { products, status } = useProducts({ q: q.trim(), collection, gender });
 
   const updateParams = (changes) => {
     const next = new URLSearchParams(searchParams);
@@ -40,7 +41,7 @@ export default function Collections() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [input]);
 
-  const hasFilters = Boolean(q.trim() || collection);
+  const hasFilters = Boolean(q.trim() || collection || gender);
   const clearFilters = () => setSearchParams({}, { replace: true });
 
   return (
@@ -76,9 +77,9 @@ export default function Collections() {
             <ChipGroup
               label="Shop for"
               options={categories.map((c) => c.name)}
-              value={collection}
+              value={collection || gender}
               allLabel="Everyone"
-              onChange={(value) => updateParams({ collection: value })}
+              onChange={(value) => updateParams({ collection: value, gender: '' })}
             />
           </div>
 
