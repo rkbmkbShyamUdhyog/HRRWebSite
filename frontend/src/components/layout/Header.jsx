@@ -4,7 +4,7 @@ import Logo from './Logo.jsx';
 import MegaMenu from './MegaMenu.jsx';
 import Icon from '../common/Icon.jsx';
 import useCategories from '../../hooks/useCategories.js';
-import { categoryPath, collectionPath } from '../../utils/format.js';
+import { collectionPath } from '../../utils/format.js';
 
 const LINKS = [
   { to: '/process', label: 'Our Process' },
@@ -22,7 +22,6 @@ export default function Header() {
   const [megaOpen, setMegaOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
-  const [openCollection, setOpenCollection] = useState(null);
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState('');
 
@@ -199,38 +198,13 @@ export default function Header() {
                     All collections
                   </Link>
                 </li>
-                {categories.map((collection) => {
-                  const expanded = openCollection === collection.slug;
-                  return (
-                    <li key={collection.slug}>
-                      <button
-                        type="button"
-                        className="mobile-menu__sublink mobile-menu__toggle"
-                        aria-expanded={expanded}
-                        onClick={() => setOpenCollection(expanded ? null : collection.slug)}
-                      >
-                        {collection.name}
-                        <Icon name="chevron" size={16} className={expanded ? 'is-flipped' : ''} />
-                      </button>
-                      <div className={`accordion ${expanded ? 'is-open' : ''}`}>
-                        <ul className="accordion__inner">
-                          <li>
-                            <Link to={collectionPath(collection.name)} className="mobile-menu__leaf">
-                              All {collection.name.toLowerCase()}
-                            </Link>
-                          </li>
-                          {collection.subcategories.map((sub) => (
-                            <li key={sub}>
-                              <Link to={categoryPath(collection.name, sub)} className="mobile-menu__leaf">
-                                {sub}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </li>
-                  );
-                })}
+                {categories.map((collection) => (
+                  <li key={collection.slug}>
+                    <Link to={collectionPath(collection.name)} className="mobile-menu__sublink">
+                      {collection.name}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </li>

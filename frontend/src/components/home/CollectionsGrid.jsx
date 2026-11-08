@@ -27,11 +27,6 @@ export default function CollectionsGrid() {
                 <p className="eyebrow">{collection.eyebrow}</p>
                 <h3 className="collection-card__title">{collection.name}</h3>
                 <p className="collection-card__text">{collection.description}</p>
-                <ul className="collection-card__tags">
-                  {collection.subcategories.map((sub) => (
-                    <li key={sub}>{sub}</li>
-                  ))}
-                </ul>
                 <Link to={collectionPath(collection.name)} className="text-link">
                   View More <Icon name="arrow" size={18} />
                 </Link>

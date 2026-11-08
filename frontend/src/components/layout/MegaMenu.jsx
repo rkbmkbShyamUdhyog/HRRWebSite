@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import Icon from '../common/Icon.jsx';
 import SafeImage from '../common/SafeImage.jsx';
-import { categoryPath, collectionPath } from '../../utils/format.js';
+import { collectionPath } from '../../utils/format.js';
 
-// Desktop "Our Products" panel: one column per collection with its sub-categories.
+// Desktop "Our Products" panel: one column per collection (Boys, Girls, Unisex).
 export default function MegaMenu({ id, categories, open }) {
   return (
     <div id={id} className={`mega ${open ? 'is-open' : ''}`}>
@@ -18,11 +18,6 @@ export default function MegaMenu({ id, categories, open }) {
               </span>
             </Link>
             <ul className="mega__list">
-              {collection.subcategories.map((sub) => (
-                <li key={sub}>
-                  <Link to={categoryPath(collection.name, sub)}>{sub}</Link>
-                </li>
-              ))}
               <li>
                 <Link to={collectionPath(collection.name)} className="mega__all">
                   All {collection.name.toLowerCase()} <Icon name="arrow" size={14} />

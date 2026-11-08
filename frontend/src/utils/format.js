@@ -39,5 +39,3 @@ export const allSizes = (product) =>
 
 export const collectionPath = (collection) => `/collections/${String(collection).toLowerCase()}`;
 
-export const categoryPath = (collection, category) =>
-  `${collectionPath(collection)}?category=${encodeURIComponent(category)}`;

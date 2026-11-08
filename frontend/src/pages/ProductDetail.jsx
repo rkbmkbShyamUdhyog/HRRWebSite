@@ -5,7 +5,7 @@ import ProductCard from '../components/product/ProductCard.jsx';
 import NotFound from './NotFound.jsx';
 import usePageTitle from '../hooks/usePageTitle.js';
 import { getProduct } from '../services/api.js';
-import { categoryPath, collectionPath, formatPrice, formatSizes, getDiscountPercent } from '../utils/format.js';
+import { collectionPath, formatPrice, formatSizes, getDiscountPercent } from '../utils/format.js';
 
 export default function ProductDetail() {
   const { slug } = useParams();
@@ -61,7 +61,7 @@ export default function ProductDetail() {
               <p className="pdp__cats">
                 <Link to={collectionPath(product.gender)}>{product.gender}</Link>
                 <span aria-hidden="true">,</span>
-                <Link to={categoryPath(product.gender, product.category)}>{product.category}</Link>
+                <span>{product.category}</span>
               </p>
               <h1 className="pdp__name">{product.name}</h1>
 
