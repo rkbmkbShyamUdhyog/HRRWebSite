@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react';
 import SafeImage from '../common/SafeImage.jsx';
 
 // Main image with a row of thumbnails. Resets to the first image when the image set changes.
-export default function Gallery({ images, alt }) {
+// fit="contain" shows whole photos (e.g. wide group shots) instead of cropping them to the frame.
+export default function Gallery({ images, alt, fit }) {
+  const contain = fit === 'contain' ? 'is-contain' : '';
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -13,7 +15,7 @@ export default function Gallery({ images, alt }) {
 
   return (
     <div className="gallery">
-      <div className="gallery__main">
+      <div className={`gallery__main ${contain}`}>
         <SafeImage src={current} alt={`${alt}, image ${index + 1} of ${images.length}`} className="gallery__img" />
       </div>
       {images.length > 1 && (
@@ -22,7 +24,7 @@ export default function Gallery({ images, alt }) {
             <li key={`${src}-${i}`}>
               <button
                 type="button"
-                className={`thumb ${i === index ? 'is-active' : ''}`}
+                className={`thumb ${contain} ${i === index ? 'is-active' : ''}`}
                 aria-label={`Show image ${i + 1}`}
                 aria-current={i === index}
                 onClick={() => setIndex(i)}

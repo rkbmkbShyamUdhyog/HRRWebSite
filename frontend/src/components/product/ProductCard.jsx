@@ -7,10 +7,16 @@ export default function ProductCard({ product }) {
   const firstColor = product.colors[0];
   const discount = getDiscountPercent(product.price, product.mrp);
   const url = `/product/${product.slug}`;
+  const sizes = allSizes(product);
 
   return (
     <article className="card">
-      <Link to={url} className="card__media" tabIndex={-1} aria-hidden="true">
+      <Link
+        to={url}
+        className={`card__media ${product.imageFit === 'contain' ? 'is-contain' : ''}`}
+        tabIndex={-1}
+        aria-hidden="true"
+      >
         <SafeImage src={firstColor?.images[0]} alt="" className="card__img" loading="lazy" />
         {discount > 0 && <span className="badge">{discount}% off</span>}
       </Link>
@@ -28,16 +34,24 @@ export default function ProductCard({ product }) {
             <dt>Colours</dt>
             <dd>{product.colors.length}</dd>
           </div>
-          <div>
-            <dt>Sizes</dt>
-            <dd>{formatSizes(allSizes(product))}</dd>
-          </div>
+          {sizes.length > 0 && (
+            <div>
+              <dt>Sizes</dt>
+              <dd>{formatSizes(sizes)}</dd>
+            </div>
+          )}
         </dl>
 
         <div className="card__foot">
           <div className="price">
-            <span className="price__now">{formatPrice(product.price)}</span>
-            {discount > 0 && <s className="price__mrp">{formatPrice(product.mrp)}</s>}
+            {product.price == null ? (
+              <span className="price__now">See price on Amazon</span>
+            ) : (
+              <>
+                <span className="price__now">{formatPrice(product.price)}</span>
+                {discount > 0 && <s className="price__mrp">{formatPrice(product.mrp)}</s>}
+              </>
+            )}
           </div>
           <ul className="dots" aria-label={`${product.colors.length} colours`}>
             {product.colors.map((color) => (

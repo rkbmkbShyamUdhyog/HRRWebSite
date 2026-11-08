@@ -11,7 +11,7 @@ const LINKS = [
   { to: '/news', label: 'News' },
 ];
 
-const GENDERS = ['Boys', 'Girls'];
+const GENDERS = ['Boys', 'Girls', 'Unisex'];
 const genderPath = (gender) => `/shop?gender=${gender}`;
 
 export default function Header() {

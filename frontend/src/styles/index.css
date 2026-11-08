@@ -884,6 +884,17 @@ dd {
   transform: scale(1.05);
 }
 
+/* Wide group photos: show the whole image on white instead of cropping, and skip the hover zoom so nothing is clipped. */
+.card__media.is-contain {
+  background: var(--white);
+}
+
+.card__media.is-contain .card__img,
+.card:hover .card__media.is-contain .card__img {
+  object-fit: contain;
+  transform: none;
+}
+
 .badge {
   position: absolute;
   top: 10px;
@@ -1459,6 +1470,16 @@ dd {
 
 .thumb .image-placeholder {
   font-size: 12px;
+}
+
+.gallery__main.is-contain,
+.thumb.is-contain {
+  background: var(--white);
+}
+
+.gallery__main.is-contain .gallery__img,
+.thumb.is-contain .thumb__img {
+  object-fit: contain;
 }
 
 .pdp__info {

@@ -40,6 +40,7 @@ export default function ProductDetail() {
   const { product, related } = data;
   const color = product.colors[colorIndex] ?? product.colors[0];
   const discount = getDiscountPercent(product.price, product.mrp);
+  const hasSizes = color.sizes.length > 0;
 
   return (
     <>
@@ -54,7 +55,7 @@ export default function ProductDetail() {
           </nav>
 
           <div className="pdp">
-            <Gallery images={color.images} alt={`${product.name} in ${color.name}`} />
+            <Gallery images={color.images} alt={`${product.name} in ${color.name}`} fit={product.imageFit} />
 
             <div className="pdp__info">
               <p className="pdp__cats">
@@ -64,22 +65,32 @@ export default function ProductDetail() {
               </p>
               <h1 className="pdp__name">{product.name}</h1>
 
-              <div className="price price--lg">
-                <span className="price__now">{formatPrice(product.price)}</span>
-                {discount > 0 && (
-                  <>
-                    <s className="price__mrp">MRP {formatPrice(product.mrp)}</s>
-                    <span className="price__off">{discount}% off</span>
-                  </>
-                )}
-              </div>
-              <p className="pdp__tax">Inclusive of all taxes</p>
+              {product.price == null ? (
+                <div className="price price--lg">
+                  <span className="price__now">See price on Amazon</span>
+                </div>
+              ) : (
+                <>
+                  <div className="price price--lg">
+                    <span className="price__now">{formatPrice(product.price)}</span>
+                    {discount > 0 && (
+                      <>
+                        <s className="price__mrp">MRP {formatPrice(product.mrp)}</s>
+                        <span className="price__off">{discount}% off</span>
+                      </>
+                    )}
+                  </div>
+                  <p className="pdp__tax">Inclusive of all taxes</p>
+                </>
+              )}
 
               <dl className="attrs">
-                <div className="attrs__item">
-                  <dt>Sizes</dt>
-                  <dd>{formatSizes(color.sizes)}</dd>
-                </div>
+                {hasSizes && (
+                  <div className="attrs__item">
+                    <dt>Sizes</dt>
+                    <dd>{formatSizes(color.sizes)}</dd>
+                  </div>
+                )}
                 <div className="attrs__item">
                   <dt>Colour</dt>
                   <dd>{color.name}</dd>
@@ -110,14 +121,16 @@ export default function ProductDetail() {
                 </div>
               )}
 
-              <div className="option">
-                <p className="option__label">Available sizes</p>
-                <ul className="size-list">
-                  {color.sizes.map((size) => (
-                    <li key={size}>{size}</li>
-                  ))}
-                </ul>
-              </div>
+              {hasSizes && (
+                <div className="option">
+                  <p className="option__label">Available sizes</p>
+                  <ul className="size-list">
+                    {color.sizes.map((size) => (
+                      <li key={size}>{size}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
               {color.amazonUrl ? (
                 <a

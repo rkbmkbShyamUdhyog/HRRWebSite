@@ -342,5 +342,109 @@
         "amazonUrl": ""
       }
     ]
+  },
+  {
+    "id": "hrr-unisex-peach-mustard",
+    "slug": "graphic-tee-shorts-set-peach-mustard",
+    "name": "Graphic Tee & Shorts Set (Pack of 2) – Peach & Mustard",
+    "brand": "HRR",
+    "collection": "Kids",
+    "gender": "Unisex",
+    "category": "T-shirt & Shorts Sets",
+    "price": 461,
+    "mrp": 999,
+    "description": "A pack of 2 T-shirt and shorts sets: a peach and a mustard printed T-shirt, each paired with maroon shorts.",
+    "featured": false,
+    "imageFit": "contain",
+    "colors": [
+      {
+        "name": "Peach & Mustard",
+        "hex": "#F0A98C",
+        "images": [
+          "/assets/pics/IMG-20261101-WA0025.jpg",
+          "/assets/pics/IMG-20261101-WA0026.jpg"
+        ],
+        "sizes": [
+          "18-24 months",
+          "2-3 yrs",
+          "3-4 yrs",
+          "4-5 yrs",
+          "5-6 yrs",
+          "6-7 yrs",
+          "7-8 yrs"
+        ],
+        "amazonUrl": ""
+      }
+    ]
+  },
+  {
+    "id": "hrr-unisex-ride-classic",
+    "slug": "ride-classic-tee-shorts-set",
+    "name": "Ride Classic Tee & Shorts Set (Pack of 2) – Peach & Red",
+    "brand": "HRR",
+    "collection": "Kids",
+    "gender": "Unisex",
+    "category": "T-shirt & Shorts Sets",
+    "price": 461,
+    "mrp": 999,
+    "description": "A pack of 2 T-shirt and shorts sets: a peach and a red \"Ride Classic\" car-print T-shirt, paired with aqua and black shorts.",
+    "featured": false,
+    "imageFit": "contain",
+    "colors": [
+      {
+        "name": "Peach & Red",
+        "hex": "#E8332A",
+        "images": [
+          "/assets/pics/IMG-20261101-WA0027.jpg",
+          "/assets/pics/IMG-20261101-WA0029.jpg",
+          "/assets/pics/IMG-20261101-WA0030.jpg"
+        ],
+        "sizes": [
+          "18-24 months",
+          "2-3 yrs",
+          "3-4 yrs",
+          "4-5 yrs",
+          "5-6 yrs",
+          "6-7 yrs",
+          "7-8 yrs"
+        ],
+        "amazonUrl": ""
+      }
+    ]
+  },
+  {
+    "id": "hrr-unisex-bicycle",
+    "slug": "bicycle-print-tee-shorts-set",
+    "name": "Bicycle Print Tee & Shorts Set (Pack of 2) – Peach & Red",
+    "brand": "HRR",
+    "collection": "Kids",
+    "gender": "Unisex",
+    "category": "T-shirt & Shorts Sets",
+    "price": 461,
+    "mrp": 999,
+    "description": "A pack of 2 T-shirt and shorts sets: a peach and a red bicycle-print T-shirt, paired with black and mint shorts.",
+    "featured": false,
+    "imageFit": "contain",
+    "colors": [
+      {
+        "name": "Peach & Red",
+        "hex": "#E8332A",
+        "images": [
+          "/assets/pics/IMG-20261101-WA0031.jpg",
+          "/assets/pics/IMG-20261101-WA0032.jpg",
+          "/assets/pics/IMG-20261101-WA0028.jpg"
+        ],
+        "sizes": [
+          "18-24 months",
+          "2-3 yrs",
+          "3-4 yrs",
+          "4-5 yrs",
+          "5-6 yrs",
+          "6-7 yrs",
+          "7-8 yrs"
+        ],
+        "amazonUrl": ""
+      }
+    ]
   }
 ]

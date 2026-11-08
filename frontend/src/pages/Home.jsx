@@ -8,6 +8,14 @@ import Testimonials from '../components/home/Testimonials.jsx';
 import LatestNews from '../components/home/LatestNews.jsx';
 import CtaBand from '../components/home/CtaBand.jsx';
 import usePageTitle from '../hooks/usePageTitle.js';
+import { collectionPath } from '../utils/format.js';
+
+// One product row per collection on the home page.
+const ROWS = [
+  { gender: 'Boys', eyebrow: 'For little explorers' },
+  { gender: 'Girls', eyebrow: 'For little dreamers' },
+  { gender: 'Unisex', eyebrow: 'For every kid' },
+];
 
 export default function Home() {
   usePageTitle();
@@ -18,13 +26,15 @@ export default function Home() {
       <StatsStrip />
       <BrandIntro />
       <CollectionsGrid />
-      <FeaturedProducts />
-      <FeaturedProducts
-        filters={{ gender: 'Girls' }}
-        eyebrow="For little dreamers"
-        title="Girls"
-        to="/shop?gender=Girls"
-      />
+      {ROWS.map(({ gender, eyebrow }) => (
+        <FeaturedProducts
+          key={gender}
+          filters={{ gender }}
+          eyebrow={eyebrow}
+          title={gender}
+          to={collectionPath(gender)}
+        />
+      ))}
       <WhyHRR />
       <Testimonials />
       <LatestNews />

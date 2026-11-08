@@ -3,9 +3,10 @@ import Wave from '../common/Wave.jsx';
 import SafeImage from '../common/SafeImage.jsx';
 
 const COLLAGE = [
+  // One picture per collection: Boys, Girls, Unisex.
   { src: '/assets/pics/force gold main.jpg', className: 'hero__pic--1' },
-  { src: '/assets/pics/g raching pink main.jpg', className: 'hero__pic--2' },
-  { src: '/assets/pics/Beachredfull main.jpeg', className: 'hero__pic--3' },
+  { src: '/assets/pics/CHASMA FRONT.jpeg', className: 'hero__pic--2' },
+  { src: '/assets/pics/IMG-20261101-WA0025.jpg', className: 'hero__pic--3' },
 ];
 
 export default function Hero() {
