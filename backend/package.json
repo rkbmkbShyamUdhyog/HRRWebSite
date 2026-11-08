@@ -6,13 +6,15 @@
   "main": "src/server.js",
   "scripts": {
     "dev": "node --watch src/server.js",
-    "start": "node src/server.js"
+    "start": "node src/server.js",
+    "seed": "node scripts/seed-products.js"
   },
   "engines": {
     "node": ">=20"
   },
   "dependencies": {
-    "dotenv": "^16.4.5",
+    "@supabase/supabase-js": "^2.119.0",
+    "dotenv": "^16.6.1",
     "express": "^4.21.1",
     "nodemailer": "^10.1.0"
   }

@@ -1,10 +1,10 @@
 # HRR — Brand Website
 
-A brand site for **HRR**, a kidswear label for little ones from 18 months to 8 years. Visitors browse collections and products here. HRR does not sell on the site, so there is no cart, checkout, payment, login or database. Each product page has a **Buy** button that opens the selected colour's Amazon listing in a new tab.
+A brand site for **HRR**, a kidswear label for little ones from 18 months to 8 years. Visitors browse collections and products here. HRR does not sell on the site, so there is no cart, checkout, payment or login. Products and their photos are stored in Supabase. Each product page has a **Buy** button that opens the selected colour's Amazon listing in a new tab.
 
 ```
 ├── frontend/   Vite + React + React Router, plain CSS
-└── backend/    Node.js + Express API, data served from JSON files
+└── backend/    Node.js + Express API, products from Supabase
 ```
 
 ## Requirements
@@ -20,7 +20,7 @@ Use two terminals, one for each app.
 ```bash
 cd backend
 npm install
-cp .env.example .env    # optional: sets PORT=5000 (the default)
+cp .env.example .env    # then fill in SUPABASE_URL and SUPABASE_SECRET_KEY
 npm run dev
 ```
 
@@ -69,40 +69,28 @@ Example: `/api/products?collection=Boys&q=pink`
 
 ## Editing content
 
-The backend reads `products.json` once at startup and reloads it whenever the file changes on disk, so product edits appear after you save and refresh the browser. If a save leaves the file as invalid JSON, the server keeps the last good version and logs an error. `categories.json` is read on every request. You don't need to restart the server. Keep the files valid JSON: double quotes, and no trailing commas.
+Products and their photos live in **Supabase**: the `products` and `product_colors` tables, and the public `products` Storage bucket. The backend reads them with the secret key from `backend/.env` and keeps the list in memory for 60 seconds, so changes show up on the site within about a minute, with no restart or redeploy. `categories.json` is still a file and is read on every request.
 
-### Products: `backend/src/data/products.json`
+`backend/src/data/products.backup.json` is a backup of the catalogue as it was before the move to Supabase. The site no longer reads it. The tables were created with `backend/supabase/schema.sql`.
 
-```json
-{
-  "id": "hrr-force",
-  "slug": "force-tshirt-jeans-set",
-  "name": "Force T-shirt & Jeans Set",
-  "brand": "HRR",
-  "collection": "Kids",
-  "gender": "Boys",
-  "category": "T-shirt & Jeans Sets",
-  "price": 469,
-  "mrp": 999,
-  "description": "Short product description.",
-  "featured": true,
-  "colors": [
-    {
-      "name": "Beige",
-      "hex": "#E1D0AA",
-      "images": [
-        "/assets/pics/force beige main.jpg",
-        "/assets/pics/force beige side.jpg",
-        "/assets/pics/force beige baclk.jpg"
-      ],
-      "sizes": ["18-24 months", "2-3 yrs", "3-4 yrs", "5-6 yrs", "6-7 yrs", "7-8 yrs"],
-      "amazonUrl": ""
-    }
-  ]
-}
-```
+### Adding or editing products in Supabase
 
-| Field | Notes |
+1. **Upload the photos.** Go to Supabase → **Storage** → bucket **products** → **Upload file** (`.jpg`, `.jpeg`, `.png` or `.webp`). Click a file → **Get URL** to copy its public link.
+2. **Add or edit the product.** Go to **Table Editor** → **products**. Click **Insert → Insert row**, or click a cell to edit it. Fill in a unique `id` and `slug`, plus `name`, `gender`, `category`, `price`, `mrp` and the other fields (see the table below). Use `sort_order` to choose where the product appears; lower numbers come first.
+3. **Add its colours.** Go to **Table Editor** → **product_colors** → **Insert row**. Set `product_id` to the product's `id`, then fill in `name`, `hex`, and:
+   - `images`: paste the photo URLs from step 1. The first photo is the main image.
+   - `sizes`: list the sizes, e.g. `18-24 months`, `2-3 yrs` … `7-8 yrs`, youngest first.
+   - `amazon_url`: paste the Amazon link for that colour, or leave it empty to show "Coming soon".
+   - `sort_order`: the colour's position; `0` is the first swatch.
+4. **Wait about a minute and refresh the site.**
+
+To hide a product without deleting it, set `is_active` to `false`. Deleting a product also deletes its colours.
+
+To copy the backup file into Supabase again (for example into a new project), run `npm run seed` in `backend/`. It uploads the photos from `frontend/src/assets/pics/`, upserts every product and colour, and is safe to run more than once.
+
+### Product fields
+
+| Column | Notes |
 | --- | --- |
 | `id` | Unique internal ID. `/api/products/<id>` also works |
 | `slug` | Unique and URL-safe (lowercase words joined by hyphens). Used in the product link: `/product/<slug>` |
@@ -110,20 +98,20 @@ The backend reads `products.json` once at startup and reloads it whenever the fi
 | `collection` | Product line, e.g. `Kids` |
 | `gender` | Must match a collection `name` in `categories.json` (`Girls`, `Boys` or `Unisex`). The collection pages, the "Shop for" filter and the product page breadcrumb use it |
 | `category` | Should match one of that collection's `subcategories`, so the mega-menu links find it. Related products are other products in the same category |
-| `price` / `mrp` | Whole rupees. The discount % is calculated from these. Set `mrp` equal to `price` to hide the discount |
+| `price` / `mrp` | Whole rupees. The discount % is calculated from these. Set `mrp` equal to `price` to hide the discount. Leave `price` empty to show "See price on Amazon" |
 | `featured` | `true` to show the product in the Home page's Featured products row (the first 4 are shown) |
-| `colors` | One entry per colour. The first colour and its first image are used on product cards |
-| `colors[].hex` | Swatch colour |
-| `colors[].images` | That colour's photos in `frontend/src/assets/pics/`, written as `/assets/pics/<file name>` (e.g. `/assets/pics/force beige main.jpg`). The file name must match exactly, apart from upper/lower case. The first is the main image and all of them appear as thumbnails. If an image fails to load, the site shows a soft "HRR" tile instead |
-| `colors[].sizes` | Sizes available in that colour, by age: `"18-24 months"`, `"2-3 yrs"`, `"3-4 yrs"` … `"7-8 yrs"`, youngest first. The product page lists the selected colour's sizes, and cards show the overall range (e.g. "18 months–8 yrs"), so keep the `<from>-<to> months` / `<from>-<to> yrs` format |
-| `colors[].amazonUrl` | The Amazon listing for that exact colour. The Buy button opens it in a new tab when that colour is selected. Leave it `""` to show a disabled "Coming soon" button |
+| `image_fit` | `contain` shows whole photos uncropped (used for the wide unisex group shots). Leave empty to fill the frame |
+| `is_active` | `false` hides the product from the site |
+| `sort_order` | Display order, lowest first |
 
-### Adding a product
-
-1. Put the photos in `frontend/src/assets/pics/` (`.jpg`, `.jpeg`, `.png` or `.webp`).
-2. Add an entry to `backend/src/data/products.json` in the same shape as the existing ones, with a new unique `id` and `slug`. Reference each photo as `/assets/pics/<file name>`.
-3. Paste the Amazon link for each colour into that colour's `amazonUrl` (for example `https://www.amazon.in/dp/B0XXXXXXX`).
-4. Save the file and refresh the site. New photo files are bundled by Vite, so on a live site run `npm run build` in `frontend/` and redeploy.
+| `product_colors` column | Notes |
+| --- | --- |
+| `product_id` | The product's `id` |
+| `name` / `hex` | Colour name and swatch colour. A product can't have two colours with the same name |
+| `images` | Public photo URLs from the `products` bucket. The first is the main image and is used on product cards. If an image fails to load, the site shows a soft "HRR" tile instead |
+| `sizes` | Sizes available in that colour, by age: `18-24 months`, `2-3 yrs` … `7-8 yrs`. Cards show the overall range (e.g. "18 months–8 yrs"), so keep the `<from>-<to> months` / `<from>-<to> yrs` format |
+| `amazon_url` | The Amazon listing for that exact colour. The Buy button opens it in a new tab. Leave it empty for a disabled "Coming soon" button |
+| `sort_order` | Swatch order, lowest first |
 
 ### Collections: `backend/src/data/categories.json`
 

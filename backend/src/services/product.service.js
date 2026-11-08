@@ -1,27 +1,78 @@
-import { watchFile } from 'node:fs';
-import { readJson, dataPath } from './readJson.js';
+import { supabase } from '../config/supabase.js';
 
 const RELATED_COUNT = 4;
-const PRODUCTS_FILE = 'products.json';
+const CACHE_MS = 60 * 1000;
 
 const normalize = (value) => String(value ?? '').trim().toLowerCase();
 
-// Products are read once at startup and re-read whenever products.json changes on disk,
-// so edits show up without a restart. A bad edit (invalid JSON) keeps the last good copy.
-let products = readJson(PRODUCTS_FILE);
+// Turns a products row (with its nested product_colors) back into the JSON shape the frontend uses.
+function toProduct(row) {
+  const product = {
+    id: row.id,
+    slug: row.slug,
+    name: row.name,
+    brand: row.brand,
+    collection: row.collection,
+    gender: row.gender,
+    category: row.category,
+    price: row.price,
+    mrp: row.mrp,
+    description: row.description,
+    featured: row.featured ?? false,
+  };
+  // imageFit is only present on products that set it (e.g. "contain" for unisex photos).
+  if (row.image_fit != null) product.imageFit = row.image_fit;
+  product.colors = (row.product_colors ?? []).map((color) => ({
+    name: color.name,
+    hex: color.hex,
+    images: color.images ?? [],
+    sizes: color.sizes ?? [],
+    amazonUrl: color.amazon_url ?? '',
+  }));
+  return product;
+}
 
-watchFile(dataPath(PRODUCTS_FILE), { interval: 1000 }, (curr, prev) => {
-  if (curr.mtimeMs === prev.mtimeMs) return;
-  try {
-    products = readJson(PRODUCTS_FILE);
-    console.log(`Reloaded ${PRODUCTS_FILE} (${products.length} products)`);
-  } catch (err) {
-    console.error(`Could not reload ${PRODUCTS_FILE}, keeping the previous version: ${err.message}`);
+async function fetchProducts() {
+  const { data, error } = await supabase
+    .from('products')
+    .select('*, product_colors(name, hex, images, sizes, amazon_url, sort_order)')
+    .eq('is_active', true)
+    .order('sort_order', { ascending: true })
+    .order('created_at', { ascending: true })
+    .order('sort_order', { ascending: true, referencedTable: 'product_colors' });
+
+  if (error) throw new Error(`Could not load products from Supabase: ${error.message}`);
+  return data.map(toProduct);
+}
+
+// The product list is cached in memory for 60 seconds. Concurrent requests share one fetch,
+// and if Supabase is unreachable the last good list keeps being served.
+let cache = { products: null, loadedAt: 0 };
+let inflight = null;
+
+async function getProducts() {
+  if (cache.products && Date.now() - cache.loadedAt < CACHE_MS) return cache.products;
+  if (!inflight) {
+    inflight = fetchProducts()
+      .then((products) => {
+        cache = { products, loadedAt: Date.now() };
+        return products;
+      })
+      .catch((err) => {
+        if (!cache.products) throw err;
+        console.error(`${err.message}. Serving the cached list.`);
+        return cache.products;
+      })
+      .finally(() => {
+        inflight = null;
+      });
   }
-});
+  return inflight;
+}
 
 // A collection filter such as "Boys" matches the product's collection or its gender.
-export function findProducts({ q, collection, gender, category, featured } = {}) {
+export async function findProducts({ q, collection, gender, category, featured } = {}) {
+  const products = await getProducts();
   const query = normalize(q);
   const col = normalize(collection);
   const gen = normalize(gender);
@@ -46,11 +97,13 @@ export function findProducts({ q, collection, gender, category, featured } = {})
   });
 }
 
-export function findProduct(idOrSlug) {
+export async function findProduct(idOrSlug) {
+  const products = await getProducts();
   return products.find((product) => product.slug === idOrSlug || product.id === idOrSlug) ?? null;
 }
 
 // Other products in the same category.
-export function findRelatedProducts(product) {
+export async function findRelatedProducts(product) {
+  const products = await getProducts();
   return products.filter((p) => p.id !== product.id && p.category === product.category).slice(0, RELATED_COUNT);
 }
