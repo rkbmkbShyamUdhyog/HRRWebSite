@@ -54,6 +54,8 @@ The frontend runs on **Vercel**, and the backend (API) runs on **Render**'s free
 
 1. Render → your service → **Environment** → set `FRONTEND_URL` to your Vercel URL, e.g.
    `https://hrr.vercel.app,http://localhost:5173` (comma-separated, no trailing slashes; add any custom domain too).
+   To also allow Vercel's per-deployment preview links, add an entry with `*`, e.g.
+   `https://hrr-web-site-*-shyam-udhyog.vercel.app`.
 2. **Save, rebuild, and deploy** (or Manual Deploy → Deploy latest commit).
 3. Open the Vercel site and check the products, a product page, and the contact form.
 
