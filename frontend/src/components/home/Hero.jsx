@@ -16,7 +16,7 @@ export default function Hero() {
         <div className="hero__content">
           <p className="eyebrow">Kidswear from 18 months to 8 years</p>
           <h1 className="hero__title">
-            Happy clothes for <span className="highlight">little adventures</span>
+            Happy dresses for <span className="highlight">little adventures</span>
           </h1>
           <p className="hero__text">
             Bold, colourful T-shirt and jeans sets made for running, climbing and every big day in

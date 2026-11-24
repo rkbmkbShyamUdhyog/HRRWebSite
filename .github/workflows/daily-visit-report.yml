@@ -1,0 +1,26 @@
+# Emails yesterday's visitor numbers every morning at 09:00 India time (03:30 UTC).
+# Needs two repository secrets (GitHub → Settings → Secrets and variables → Actions):
+#   BACKEND_URL    e.g. https://hrr-api.onrender.com (no trailing slash)
+#   REPORT_SECRET  the same value as REPORT_SECRET on Render
+# Run it by hand from the Actions tab with "Run workflow".
+name: Daily visit report
+
+on:
+  schedule:
+    - cron: '30 3 * * *'
+  workflow_dispatch:
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ask the backend to email the report
+        env:
+          BACKEND_URL: ${{ secrets.BACKEND_URL }}
+          REPORT_SECRET: ${{ secrets.REPORT_SECRET }}
+        run: |
+          # The Render free plan sleeps when idle, so allow time to wake up and retry a few times.
+          curl --fail-with-body --silent --show-error \
+            --max-time 120 --retry 4 --retry-delay 30 --retry-all-errors \
+            -X POST "$BACKEND_URL/api/visits/report" \
+            -H "Authorization: Bearer $REPORT_SECRET"

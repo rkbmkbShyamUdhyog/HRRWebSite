@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import ProductGrid from '../product/ProductGrid.jsx';
 import Icon from '../common/Icon.jsx';
 import { getProducts } from '../../services/api.js';
+import { seededProducts } from '../../prerender/seed.js';
 
 const SHOW = 4;
 
@@ -13,8 +14,8 @@ export default function FeaturedProducts({
   title = 'Featured products',
   to = '/collections',
 }) {
-  const [products, setProducts] = useState([]);
-  const [status, setStatus] = useState('loading');
+  const [products, setProducts] = useState(() => seededProducts(filters)?.slice(0, SHOW) ?? []);
+  const [status, setStatus] = useState(() => (seededProducts(filters) ? 'ready' : 'loading'));
   const key = JSON.stringify(filters);
 
   useEffect(() => {

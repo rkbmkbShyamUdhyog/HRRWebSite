@@ -1,22 +1,28 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import Icon from '../components/common/Icon.jsx';
 import Gallery from '../components/product/Gallery.jsx';
 import ProductCard from '../components/product/ProductCard.jsx';
 import NotFound from './NotFound.jsx';
 import usePageTitle from '../hooks/usePageTitle.js';
 import { getProduct } from '../services/api.js';
+import { seededProduct } from '../prerender/seed.js';
 import { collectionPath, formatPrice, formatSizes, getDiscountPercent } from '../utils/format.js';
 
 export default function ProductDetail() {
   const { slug } = useParams();
-  const [data, setData] = useState(null);
-  const [status, setStatus] = useState('loading');
+  const [data, setData] = useState(() => seededProduct(slug));
+  const [status, setStatus] = useState(data ? 'ready' : 'loading');
   const [colorIndex, setColorIndex] = useState(0);
 
   useEffect(() => {
     let ignore = false;
-    setStatus('loading');
-    setColorIndex(0);
+    // Prerendered product already on screen: refresh it without flashing "Loading…".
+    const showing = data?.product && (data.product.slug === slug || data.product.id === slug);
+    if (!showing) {
+      setStatus('loading');
+      setColorIndex(0);
+    }
     getProduct(slug)
       .then((result) => {
         if (ignore) return;
@@ -47,7 +53,7 @@ export default function ProductDetail() {
       <section className="section section--tight">
         <div className="container">
           <nav className="breadcrumb" aria-label="Breadcrumb">
-            <Link to="/">Home</Link>
+            <Link to="/">Factory</Link>
             <span aria-hidden="true">/</span>
             <Link to="/collections">Our Products</Link>
             <span aria-hidden="true">/</span>
@@ -147,6 +153,8 @@ export default function ProductDetail() {
                 </button>
               )}
 
+              <ProductDetails details={product.details} />
+
               <div className="pdp__desc">
                 <h2 className="option__label">Description</h2>
                 <p>{product.description}</p>
@@ -171,5 +179,42 @@ export default function ProductDetail() {
         </section>
       )}
     </>
+  );
+}
+
+// "About this product": intro, highlights and a size & fit note. Hidden when the product has no details.
+function ProductDetails({ details }) {
+  if (!details) return null;
+  const highlights = Array.isArray(details.highlights) ? details.highlights.filter(Boolean) : [];
+  if (!details.intro && highlights.length === 0 && !details.sizeNote) return null;
+
+  return (
+    <section className="pdp-about" aria-labelledby="pdp-about-title">
+      <h2 id="pdp-about-title" className="pdp-about__title">
+        About this product
+      </h2>
+      {details.intro && <p className="pdp-about__intro">{details.intro}</p>}
+
+      {highlights.length > 0 && (
+        <>
+          <h3 className="option__label pdp-about__label">Highlights</h3>
+          <ul className="pdp-about__list">
+            {highlights.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </>
+      )}
+
+      {details.sizeNote && (
+        <div className="pdp-about__fit">
+          <Icon name="ruler" size={18} className="pdp-about__fit-icon" />
+          <p>
+            <strong>Size &amp; fit</strong>
+            {details.sizeNote}
+          </p>
+        </div>
+      )}
+    </section>
   );
 }

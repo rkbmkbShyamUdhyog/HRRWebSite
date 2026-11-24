@@ -1,8 +1,10 @@
 import 'dotenv/config';
 import app from './app.js';
 
-const PORT = process.env.PORT || 5000;
+// Render sets PORT; locally it defaults to 5000 (the port the Vite dev proxy expects).
+const PORT = Number(process.env.PORT) || 5000;
+const HOST = '0.0.0.0';
 
-app.listen(PORT, () => {
-  console.log(`HRR API running on http://localhost:${PORT}`);
+app.listen(PORT, HOST, () => {
+  console.log(`HRR API listening on ${HOST}:${PORT}`);
 });

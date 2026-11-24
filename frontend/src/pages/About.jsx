@@ -41,7 +41,7 @@ export default function About() {
             <p className="eyebrow">Our journey</p>
             <h2 className="section__title">From one small idea to wardrobes across the country</h2>
             <p>
-              HRR began in Howrah, West Bengal, with a simple belief: children’s clothes should be as
+              HRR began in Howrah, West Bengal, with a simple belief: children’s dresses should be as
               comfortable as they are cheerful. We set out to make outfits kids actually want to wear, and
               that parents can trust to fit well and hold up to everyday play.
             </p>

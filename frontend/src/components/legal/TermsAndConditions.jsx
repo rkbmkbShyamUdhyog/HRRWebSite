@@ -10,7 +10,7 @@ export default function TermsAndConditions() {
 
       <h2>1. About these terms</h2>
       <p>
-        This website is run by Raj Kumar Biyani, the owner of the HRR® clothing brand (“HRR”, “we”, “us”), from {ADDRESS}.
+        This website is run by Raj Kumar Biyani, the owner of the HRR® kids’ dresses brand (“HRR”, “we”, “us”), from {ADDRESS}.
       </p>
       <p>
         These terms apply to everyone who visits or uses the website. Our Privacy Policy, published on this website,

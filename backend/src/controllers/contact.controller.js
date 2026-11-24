@@ -2,6 +2,7 @@ import * as mailService from '../services/mail.service.js';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_RE = /^[+\d][\d\s()-]{6,19}$/;
+const UNAVAILABLE = 'The contact form is not available right now. Please email or call us.';
 
 // Single-line fields: trim and drop line breaks so they can't spill into email headers.
 const line = (value) => (typeof value === 'string' ? value.replace(/[\r\n]+/g, ' ').trim() : '');
@@ -34,11 +35,16 @@ export async function sendMessage(req, res, next) {
     }
 
     if (!mailService.isMailConfigured()) {
-      console.error('Contact form: SMTP settings are missing from .env');
-      return res.status(503).json({ error: 'The contact form is not available right now. Please email or call us.' });
+      console.error('Contact form: email settings are missing (see EMAIL_PROVIDER in .env.example)');
+      return res.status(503).json({ error: UNAVAILABLE });
     }
 
-    await mailService.sendContactMessage(message);
+    try {
+      await mailService.sendContactMessage(message);
+    } catch (err) {
+      console.error(`Contact form: could not send email: ${err.message}`);
+      return res.status(503).json({ error: UNAVAILABLE });
+    }
     res.json({ ok: true });
   } catch (err) {
     next(err);

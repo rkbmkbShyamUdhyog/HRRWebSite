@@ -8,7 +8,7 @@ export default function PageBanner({ eyebrow, title, intro, image, crumbs = [], 
       <div className={`container banner__inner ${image ? 'banner__inner--split' : ''}`}>
         <div className="banner__text">
           <nav className="breadcrumb" aria-label="Breadcrumb">
-            <Link to="/">Home</Link>
+            <Link to="/">Factory</Link>
             {crumbs.map(({ label, to }) => (
               <span key={label}>
                 <span aria-hidden="true">/</span>

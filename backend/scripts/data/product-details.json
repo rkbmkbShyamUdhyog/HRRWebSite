@@ -1,0 +1,57 @@
+{
+  "hrr-force": {
+    "intro": "Bold, sporty and ready for anything. The Force set pairs a full-sleeve T-shirt with a big \"Force\" graphic and classic washed blue jeans, so your little one gets a complete outfit in one go, no mixing and matching needed.",
+    "highlights": ["Eye-catching \"Force\" graphic on the chest", "Full sleeves for cooler mornings and evenings", "Washed blue jeans that go with almost everything", "Comes in Beige, Cherry and Gold"],
+    "sizeNote": "Sizes run by age. If your child is between sizes, pick the larger one for a comfortable fit."
+  },
+  "hrr-g-racing": {
+    "intro": "Made for kids who never slow down. A racing-inspired print and a contrast neckline give this full-sleeve T-shirt a sporty edge, while the washed blue jeans keep the look relaxed and easy.",
+    "highlights": ["Racing-themed print with a contrast neckline", "Full-sleeve T-shirt for all-day cover", "Matching washed jeans included in the set", "Choose Pink, Light Green or Light Blue"],
+    "sizeNote": "Sizes run by age. Between sizes? Go one up so there's room to play."
+  },
+  "hrr-beach": {
+    "intro": "A bright red full-sleeve tee that's impossible to miss, paired with dark blue jeans for a smart contrast. Great for outings, family visits and weekend fun.",
+    "highlights": ["Vibrant red printed T-shirt", "Dark blue jeans for a neat, put-together look", "Full sleeves for extra cover", "A complete two-piece outfit"],
+    "sizeNote": "Sizes run by age. For a roomier fit, choose the next size up."
+  },
+  "hrr-london": {
+    "intro": "Light, fresh and easy to wear. A sky-blue printed full-sleeve T-shirt meets dark blue jeans in a calm, classic combination that works for school outings and family days alike.",
+    "highlights": ["Soft sky-blue printed T-shirt", "Dark blue jeans for an easy, classic pairing", "Full sleeves for all-day comfort", "Now available from 18-24 months"],
+    "sizeNote": "Sizes run by age. If in doubt, pick the larger size."
+  },
+  "hrr-chasma": {
+    "intro": "Party-ready with a playful twist. This set teams a pink cold-shoulder top with a fun sunglasses print and colourful printed shorts, perfect for birthdays, festive get-togethers and holiday photos.",
+    "highlights": ["Pink top with a sunglasses print", "Trendy cold-shoulder sleeves", "Colourful printed shorts", "A ready-to-wear two-piece set"],
+    "sizeNote": "Sizes run by age. For a relaxed fit, choose one size up."
+  },
+  "hrr-pink-hat": {
+    "intro": "Bright, cheerful and easy to move in. A pink sleeveless printed top pairs with denim shorts for a fun look that works just as well at a party as on a sunny day out.",
+    "highlights": ["Sleeveless pink top with a playful print", "Denim shorts for a casual, cool finish", "Light and comfortable for warm days", "Two pieces, one complete look"],
+    "sizeNote": "Sizes run by age. Between sizes? The larger one gives more room to grow."
+  },
+  "hrr-blue-style": {
+    "intro": "A twirl-worthy dress with a smart, layered look. The navy 3/4-sleeve top flows into a flared pink checked pinafore skirt that falls to calf length: dressy enough for occasions, easy enough for everyday wear.",
+    "highlights": ["Layered pinafore-style design", "Flared, calf-length checked skirt", "3/4 sleeves in contrasting navy", "Now available up to 9-10 yrs"],
+    "sizeNote": "Sizes run by age. Calf-length styles look best when the size matches your child's age, so check the length before sizing up."
+  },
+  "ftc-pink-midi": {
+    "intro": "Fresh gingham charm for sunny days and special occasions. A white sleeveless bodice sits under a pink gingham overlay, finished with a tiered gingham skirt that swishes with every step.",
+    "highlights": ["Classic pink and white gingham", "Tiered skirt with a playful swing", "Sleeveless design for warmer days", "Now available up to 9-10 yrs"],
+    "sizeNote": "Sizes run by age. If your child is tall for their age, consider the next size up."
+  },
+  "hrr-unisex-peach-mustard": {
+    "intro": "Two everyday outfits in one pack. A peach and a mustard printed T-shirt, each paired with maroon shorts, make this set ideal for siblings, twins or simply having a spare outfit ready for play.",
+    "highlights": ["Pack of 2 T-shirt and shorts sets", "Peach and mustard printed T-shirts", "Maroon shorts that match both tees", "Great for boys and girls alike"],
+    "sizeNote": "Sizes run by age, now up to 9-10 yrs. The size you choose applies to both sets in the pack."
+  },
+  "hrr-unisex-ride-classic": {
+    "intro": "Vintage car vibes for little road-trippers. This pack of two brings a peach and a red \"Ride Classic\" T-shirt with aqua and black shorts, easy to mix and match through the week.",
+    "highlights": ["Pack of 2 T-shirt and shorts sets", "\"Ride Classic\" car print on both tees", "Aqua and black shorts to mix and match", "A fun pick for boys and girls"],
+    "sizeNote": "Sizes run by age, now up to 9-10 yrs. Both sets in the pack come in the size you choose."
+  },
+  "hrr-unisex-bicycle": {
+    "intro": "For kids who love to pedal. Two bicycle-print T-shirts in peach and red, paired with black and mint shorts, make this pack a cheerful choice for playdates, outings and everyday comfort.",
+    "highlights": ["Pack of 2 T-shirt and shorts sets", "Playful bicycle print on both tees", "Black and mint shorts for easy pairing", "Designed for boys and girls"],
+    "sizeNote": "Sizes run by age, now up to 9-10 yrs. One size choice covers both sets in the pack."
+  }
+}

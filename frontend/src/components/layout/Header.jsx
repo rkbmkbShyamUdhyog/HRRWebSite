@@ -85,7 +85,7 @@ export default function Header() {
   return (
     <header className="header" ref={headerRef}>
       <div className="container header__inner">
-        <Link to="/" className="logo" aria-label="HRR home">
+        <Link to="/" className="logo" aria-label="HRR factory">
           <Logo />
         </Link>
 

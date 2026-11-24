@@ -27,7 +27,7 @@ export default function PrivacyPolicy() {
 
       <h2>1. Who we are</h2>
       <p>
-        This website is run by Raj Kumar Biyani, the owner of the HRR® clothing brand. This policy explains what personal
+        This website is run by Raj Kumar Biyani, the owner of the HRR® kids’ dresses brand. This policy explains what personal
         information we collect through the website, why, and the choices you have. It applies only to this website, not
         to Amazon or any other site we link to.
       </p>

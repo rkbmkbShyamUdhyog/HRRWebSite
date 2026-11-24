@@ -1,16 +1,21 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { getProducts } from '../services/api.js';
+import { seededProducts } from '../prerender/seed.js';
 
 // Fetches products for the given filters, ignoring stale responses.
 export default function useProducts(filters, enabled = true) {
-  const [products, setProducts] = useState([]);
-  const [status, setStatus] = useState('loading');
+  const [seeded] = useState(() => (enabled ? seededProducts(filters) : null));
+  const [products, setProducts] = useState(seeded ?? []);
+  const [status, setStatus] = useState(seeded ? 'ready' : 'loading');
+  // Prerendered data is already on screen: refresh it quietly instead of flashing "Loading…".
+  const keepSeeded = useRef(Boolean(seeded));
   const key = JSON.stringify(filters);
 
   useEffect(() => {
     if (!enabled) return;
     let ignore = false;
-    setStatus('loading');
+    if (keepSeeded.current) keepSeeded.current = false;
+    else setStatus('loading');
     getProducts(filters)
       .then((data) => {
         if (ignore) return;

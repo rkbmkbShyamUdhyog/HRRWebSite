@@ -29,7 +29,20 @@ function toProduct(row) {
     sizes: color.sizes ?? [],
     amazonUrl: color.amazon_url ?? '',
   }));
+  product.details = toDetails(row.details);
   return product;
+}
+
+// products.details is jsonb: { intro, highlights[], sizeNote }. Returns null when there is nothing to show.
+function toDetails(raw) {
+  if (!raw || typeof raw !== 'object') return null;
+  const text = (value) => (typeof value === 'string' ? value.trim() : '');
+  const details = {
+    intro: text(raw.intro),
+    highlights: Array.isArray(raw.highlights) ? raw.highlights.map(text).filter(Boolean) : [],
+    sizeNote: text(raw.sizeNote ?? raw.size_note),
+  };
+  return details.intro || details.highlights.length || details.sizeNote ? details : null;
 }
 
 async function fetchProducts() {

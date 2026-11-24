@@ -11,7 +11,7 @@ export default function NotFound({ message = 'The page you’re looking for does
       <p className="not-found__text">{message}</p>
       <div className="not-found__actions">
         <Link to="/" className="btn btn--primary">
-          Back home
+          Back to factory
         </Link>
         <Link to="/collections" className="btn btn--outline">
           Shop all

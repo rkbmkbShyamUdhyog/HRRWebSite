@@ -62,3 +62,42 @@ create policy "Public can read colours of active products"
       where p.id = product_colors.product_id and p.is_active = true
     )
   );
+
+-- Site visits, for the daily visitor email.
+-- One row per page view. visitor_id is a random ID the browser keeps in localStorage;
+-- no IP address, name or other personal data is stored.
+create table if not exists public.site_visits (
+  id          bigint generated always as identity primary key,
+  visitor_id  text not null,
+  path        text not null,
+  created_at  timestamptz not null default now()
+);
+
+create index if not exists site_visits_created_at_idx on public.site_visits (created_at);
+
+-- RLS on with no policies: only the backend's secret key can read or write visits.
+alter table public.site_visits enable row level security;
+
+-- Counts for [from_ts, to_ts): unique visitors, page views and the most viewed pages.
+create or replace function public.visit_stats(from_ts timestamptz, to_ts timestamptz)
+returns json
+language sql
+stable
+as $$
+  select json_build_object(
+    'visitors',   (select count(distinct visitor_id) from public.site_visits where created_at >= from_ts and created_at < to_ts),
+    'page_views', (select count(*) from public.site_visits where created_at >= from_ts and created_at < to_ts),
+    'top_pages',  coalesce((
+      select json_agg(t) from (
+        select path, count(*) as views
+        from public.site_visits
+        where created_at >= from_ts and created_at < to_ts
+        group by path
+        order by views desc, path
+        limit 5
+      ) t
+    ), '[]'::json)
+  );
+$$;
+
+revoke all on function public.visit_stats(timestamptz, timestamptz) from public, anon, authenticated;

@@ -1,6 +1,7 @@
 import * as mailService from '../services/mail.service.js';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const UNAVAILABLE = 'Sign-up is not available right now. Please try again later.';
 
 export async function subscribe(req, res, next) {
   try {
@@ -10,11 +11,16 @@ export async function subscribe(req, res, next) {
     }
 
     if (!mailService.isMailConfigured()) {
-      console.error('Newsletter: SMTP settings are missing from .env');
-      return res.status(503).json({ error: 'Sign-up is not available right now. Please try again later.' });
+      console.error('Newsletter: email settings are missing (see EMAIL_PROVIDER in .env.example)');
+      return res.status(503).json({ error: UNAVAILABLE });
     }
 
-    await mailService.sendNewsletterSignup(email);
+    try {
+      await mailService.sendNewsletterSignup(email);
+    } catch (err) {
+      console.error(`Newsletter: could not send email: ${err.message}`);
+      return res.status(503).json({ error: UNAVAILABLE });
+    }
     res.json({ ok: true });
   } catch (err) {
     next(err);

@@ -12,6 +12,8 @@ import Category from './pages/Category.jsx';
 import ProductDetail from './pages/ProductDetail.jsx';
 import Legal from './pages/Legal.jsx';
 import NotFound from './pages/NotFound.jsx';
+import useVisitTracking from './hooks/useVisitTracking.js';
+import { setSeed } from './prerender/seed.js';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -22,6 +24,13 @@ function ScrollToTop() {
 }
 
 export default function App() {
+  useVisitTracking();
+
+  // The prerendered data was only for the first render; from here on pages fetch live data.
+  useEffect(() => {
+    setSeed(null);
+  }, []);
+
   return (
     <>
       <ScrollToTop />

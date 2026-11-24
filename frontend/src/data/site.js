@@ -1,7 +1,7 @@
 // Brand details used across the site. All placeholders: replace with HRR's real details.
 export const SITE = {
   name: 'HRR',
-  tagline: 'Happy clothes for little adventures.',
+  tagline: 'Happy dresses for little adventures.',
   emails: ['hrrcreation@gmail.com', 'shyamudhyog@gmail.com'],
   phones: ['+91 82409 20448', '+91 98303 31263', '+91 98309 97887'],
   // The first address is the one shown on the Google Map on the Contact page.

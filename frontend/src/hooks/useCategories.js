@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import { getCategories } from '../services/api.js';
+import { seededCategories } from '../prerender/seed.js';
 
 // Collections rarely change, so share one request between the header, footer and pages.
 let cached = null;
 let pending = null;
 
 export default function useCategories() {
-  const [categories, setCategories] = useState(cached ?? []);
+  const [categories, setCategories] = useState(() => cached ?? seededCategories() ?? []);
 
   useEffect(() => {
     if (cached) return;

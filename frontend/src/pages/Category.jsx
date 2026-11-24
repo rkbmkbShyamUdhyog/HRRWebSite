@@ -6,6 +6,7 @@ import NotFound from './NotFound.jsx';
 import useProducts from '../hooks/useProducts.js';
 import usePageTitle from '../hooks/usePageTitle.js';
 import { getCategories } from '../services/api.js';
+import { seededCategories } from '../prerender/seed.js';
 
 const TONES = { girls: 'pink', boys: 'sky', unisex: 'mint' };
 
@@ -13,12 +14,14 @@ const TONES = { girls: 'pink', boys: 'sky', unisex: 'mint' };
 export default function Category() {
   const { collection: slug } = useParams();
 
-  const [collection, setCollection] = useState(null);
-  const [lookup, setLookup] = useState('loading');
+  const [collection, setCollection] = useState(
+    () => seededCategories()?.find((c) => c.slug === slug.toLowerCase()) ?? null
+  );
+  const [lookup, setLookup] = useState(collection ? 'ready' : 'loading');
 
   useEffect(() => {
     let ignore = false;
-    setLookup('loading');
+    if (collection?.slug !== slug.toLowerCase()) setLookup('loading');
     getCategories()
       .then((data) => {
         if (ignore) return;

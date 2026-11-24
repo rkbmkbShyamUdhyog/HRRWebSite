@@ -56,10 +56,10 @@ export default function Footer() {
       <div className="footer__body">
         <div className="container footer__top">
           <div className="footer__brand">
-            <Link to="/" className="logo" aria-label="HRR home">
+            <Link to="/" className="logo" aria-label="HRR factory">
               <Logo light />
             </Link>
-            <p className="footer__tagline">{SITE.tagline} Comfortable, colourful clothing from 18 months to 8 years.</p>
+            <p className="footer__tagline">{SITE.tagline} Comfortable, colourful dresses from 18 months to 8 years.</p>
 
             <form className="newsletter" onSubmit={subscribe}>
               <label htmlFor="newsletter-email" className="footer__heading">

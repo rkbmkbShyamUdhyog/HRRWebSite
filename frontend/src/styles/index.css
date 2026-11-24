@@ -48,6 +48,7 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
   scroll-behavior: smooth;
 }
 
@@ -67,6 +68,7 @@ body.no-scroll {
 
 #root {
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
 }
@@ -809,8 +811,10 @@ dd {
   transition: transform 0.6s var(--ease);
 }
 
-.collection-card:hover .collection-card__img {
-  transform: scale(1.05);
+@media (hover: hover) {
+  .collection-card:hover .collection-card__img {
+    transform: scale(1.05);
+  }
 }
 
 .collection-card__body {
@@ -858,9 +862,11 @@ dd {
   transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
 }
 
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow);
+@media (hover: hover) {
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+  }
 }
 
 .card__media {
@@ -880,8 +886,10 @@ dd {
   transition: transform 0.6s var(--ease);
 }
 
-.card:hover .card__img {
-  transform: scale(1.05);
+@media (hover: hover) {
+  .card:hover .card__img {
+    transform: scale(1.05);
+  }
 }
 
 /* Wide group photos: show the whole image on white instead of cropping, and skip the hover zoom so nothing is clipped. */
@@ -1334,6 +1342,7 @@ dd {
   font: inherit;
   color: var(--navy);
   outline: none;
+  text-overflow: ellipsis;
 }
 
 .search__input::-webkit-search-cancel-button {
@@ -1630,6 +1639,89 @@ dd {
 
 .btn--buy:disabled:hover {
   background: var(--primary);
+}
+
+/* "About this product", directly under the Buy button. */
+.pdp-about {
+  margin-top: 28px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--white);
+}
+
+.pdp-about__title {
+  font-size: 22px;
+  line-height: 1.25;
+}
+
+.pdp-about__intro {
+  margin-top: 10px;
+}
+
+.pdp-about__label {
+  margin-top: 20px;
+}
+
+.pdp-about__list {
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.pdp-about__list li {
+  position: relative;
+  padding-left: 30px;
+  line-height: 1.5;
+}
+
+/* Tick in a soft circle, drawn in CSS so it needs no extra icon. */
+.pdp-about__list li::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--mint);
+}
+
+.pdp-about__list li::after {
+  content: '';
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  width: 6px;
+  height: 9px;
+  border: solid var(--teal);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.pdp-about__fit {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--peach);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.pdp-about__fit-icon {
+  flex: none;
+  margin-top: 1px;
+  color: var(--primary);
+}
+
+.pdp-about__fit strong {
+  display: block;
+  margin-bottom: 2px;
+  font-weight: 800;
+  color: var(--navy);
 }
 
 .pdp__desc {
@@ -2173,6 +2265,9 @@ a.contact-card:hover {
     right: 0;
     display: block;
     max-height: calc(100vh - var(--header-h));
+    /* dvh tracks the phone's address bar, so the last menu items stay reachable. */
+    max-height: calc(100dvh - var(--header-h));
+    overscroll-behavior: contain;
     overflow-y: auto;
     padding: 8px var(--gutter) 24px;
     background: var(--white);
@@ -2279,7 +2374,12 @@ a.contact-card:hover {
 
   .collection-card__media {
     min-height: 0;
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 4 / 3;
+  }
+
+  /* Portrait photos: keep the top of the outfit in frame rather than the middle. */
+  .collection-card__img {
+    object-position: center 20%;
   }
 
   .stats__grid {
@@ -2369,6 +2469,14 @@ a.contact-card:hover {
     gap: 8px;
   }
 
+  .pdp-about {
+    padding: 18px 16px;
+  }
+
+  .pdp-about__title {
+    font-size: 20px;
+  }
+
   .footer__top {
     grid-template-columns: 1fr 1fr;
   }
@@ -2393,6 +2501,22 @@ a.contact-card:hover {
 
   .hero__actions .btn {
     flex: 1;
+  }
+
+  .search__input::placeholder {
+    font-size: 14px;
+  }
+
+  .product-grid {
+    gap: 10px;
+  }
+
+  .card__body {
+    padding: 10px;
+  }
+
+  .card__name {
+    font-size: 16px;
   }
 }
 
